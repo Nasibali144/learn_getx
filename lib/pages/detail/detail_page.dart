@@ -16,9 +16,7 @@ class DetailPage extends StatelessWidget {
             actions: [
               if(controller.state == DetailState.read)
                 IconButton(
-                  onPressed: () {
-                    // code edit
-                  },
+                  onPressed: controller.pressedEdit,
                   icon: const Icon(Icons.edit, color: Colors.black,),
                 )
               else
@@ -36,6 +34,7 @@ class DetailPage extends StatelessWidget {
 
                 // #title
                 TextField(
+                  readOnly: controller.readOnly,
                   controller: controller.titleController,
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
@@ -52,6 +51,7 @@ class DetailPage extends StatelessWidget {
                 // #body
                 Expanded(
                   child: TextField(
+                    readOnly: controller.readOnly,
                     expands: true,
                     maxLines: null,
                     controller: controller.bodyController,

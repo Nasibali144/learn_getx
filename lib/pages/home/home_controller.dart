@@ -40,8 +40,8 @@ class HomeController extends GetxController {
   }
 
   void createPost() {
-    // var detailController = Get.find<DetailController>();
-    // detailController.state = DetailState.create;
-    Get.to(const DetailPage());
+    var detailController = Get.find<DetailController>();
+    detailController.clearOldData();
+    Get.to(() => const DetailPage());
   }
 }
