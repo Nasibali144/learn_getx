@@ -8,16 +8,16 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeController>(
-      init: HomeController(),
-      builder: (controller) {
-        return Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: const Text("POSTS"),
-            backgroundColor: Colors.blueGrey[800],
-          ),
-          body: Stack(
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text("POSTS"),
+        backgroundColor: Colors.blueGrey[800],
+      ),
+      body: GetBuilder<HomeController>(
+          init: HomeController(),
+          builder: (controller) {
+          return Stack(
             children: [
               // #body
               ListView.builder(
@@ -33,13 +33,13 @@ class HomePage extends StatelessWidget {
                 child: const Center(child: CircularProgressIndicator()),
               )
             ],
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {},
-            child: const Icon(Icons.add),
-          ),
-        );
-      }
+          );
+        }
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
