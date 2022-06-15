@@ -43,16 +43,16 @@ class NetworkService {
     return response.body;
   }
 
-  static Future<String?> POST(String api, Map<String, dynamic> body) async {
+  static Future<String?> POST(String api, String body) async {
     Uri uri = Uri.https(getServer(), api);
     http.Response? response = await http.post(uri, body: body, headers: headers);
     LogService.i(response.body);
 
-    if (response.statusCode != 200 || response.statusCode != 201) {
-      return null;
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return response.body;
     }
 
-    return response.body;
+    return null;
   }
 
   static Future<String?> DELETE(String api, Map<String, dynamic> params) async {
@@ -82,6 +82,15 @@ class NetworkService {
   }
 
   // body
+  static String bodyCreate(Post post) {
+    Map<String, dynamic> mapJson = {
+      "title": post.title,
+      "body": post.body,
+      "userId": post.userId
+    };
+    String stringJson = jsonEncode(mapJson);
+    return stringJson;
+  }
 
   // parsing
   static List<Post> parsePostList(String body) {

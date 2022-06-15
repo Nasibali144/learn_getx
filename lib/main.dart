@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learn_getx/pages/detail/detail_page.dart';
 import 'pages/home/home_page.dart';
 
 void main() {
@@ -13,6 +14,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      getPages: [
+        GetPage(
+          name: '/home',
+          page: () => HomePage(),
+          transition: Transition.leftToRightWithFade,
+          transitionDuration: const Duration(milliseconds: 200),
+        ),
+        GetPage(
+          name: '/detail',
+          page: () => const DetailPage(),
+          transition: Transition.leftToRightWithFade,
+          transitionDuration: const Duration(milliseconds: 200),
+        ),
+      ],
       home: HomePage(),
     );
   }

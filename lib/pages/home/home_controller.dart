@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:learn_getx/models/post_model.dart';
+import 'package:learn_getx/pages/detail/detail_controller.dart';
+import 'package:learn_getx/pages/detail/detail_page.dart';
 import 'package:learn_getx/services/network_service.dart';
 import 'package:learn_getx/services/util_service.dart';
 
@@ -26,7 +28,7 @@ class HomeController extends GetxController {
     if(response != null) {
       _showData(response);
     } else {
-      Utils.fireSnackGetX("Please tyr again! Something went error!");
+      Utils.fireSnackGetX("Please try again! Something went error!");
     }
     isLoading = false;
     update();
@@ -35,5 +37,11 @@ class HomeController extends GetxController {
   void _showData(String response) {
     items = NetworkService.parsePostList(response);
     update();
+  }
+
+  void createPost() {
+    // var detailController = Get.find<DetailController>();
+    // detailController.state = DetailState.create;
+    Get.to(const DetailPage());
   }
 }

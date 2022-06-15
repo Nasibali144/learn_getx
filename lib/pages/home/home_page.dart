@@ -4,7 +4,9 @@ import 'package:learn_getx/pages/home/home_controller.dart';
 import 'package:learn_getx/views/post_card_view.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
+
+  final HomeController homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +38,9 @@ class HomePage extends StatelessWidget {
           );
         }
       ),
+
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: homeController.createPost,
         child: const Icon(Icons.add),
       ),
     );
