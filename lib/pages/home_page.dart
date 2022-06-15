@@ -12,9 +12,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // fields
   List<Post> items = [];
   bool isLoading = false;
 
+  // logic method
   @override
   initState() {
     super.initState();
@@ -26,16 +28,18 @@ class _HomePageState extends State<HomePage> {
     setState((){
       isLoading = true;
     });
-    NetworkService.GET(NetworkService.API_POST, NetworkService.emptyParams()).then((response) {
-      if(response != null) {
-        showData(response);
-      } else {
-        Utils.fireSnackBar("Please tyr again! Something went error!", context);
-      }
-    });
+    NetworkService.GET(NetworkService.API_POST, NetworkService.emptyParams()).then((response) => checkData(response));
     setState((){
       isLoading = false;
     });
+  }
+
+  void checkData(String? response) {
+    if(response != null) {
+      showData(response);
+    } else {
+      Utils.fireSnackBar("Please tyr again! Something went error!", context);
+    }
   }
 
   void showData(String response) {
@@ -44,6 +48,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  // widget method
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,4 +77,5 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
 }
